@@ -40,10 +40,10 @@ COPY --from=builder /home/app/.yarn/releases .yarn/releases/
 
 RUN rm -rf ./.yarn/cache
 RUN rm -Rf .git
-RUN rm -Rf ./dist/*
+RUN rm -Rf ./docs/*
 
 RUN chown node:node /home/app
-RUN chown -Rf node:node /home/app/dist || echo skipped
+RUN chown -Rf node:node /home/app/docs || echo skipped
 
 WORKDIR /home/app
 
