@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  pizza-app-local:
+    container_name: ${DOCKER_NODE_NAME}
+    hostname: ${DOCKER_NODE_NAME}
+    image: local/${DOCKER_HOST_NAME}
+    tty: true
+    build:
+      context: .
+      target: app
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - FRONT_HOST=${FRONT_HOST}
+    volumes:
+      - ./:/home/app
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - local
+
+networks:
+  local:
+    name: "${DOCKER_NETWORK_NAME}"
