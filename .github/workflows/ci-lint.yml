@@ -36,8 +36,11 @@ jobs:
         shell: sh
         run: |
           $DC run pizza-app-local sh
+          echo "Install deps"
           yarn install
+          echo "Run lint"
           yarn lint
+          echo "Lint end"
 
       - name: Kill container
         shell: sh
