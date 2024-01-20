@@ -14,18 +14,14 @@ jobs:
 
     if: contains(github.ref, 'development')
 
-    strategy:
-      matrix:
-        node-version: '20'
-        cache: 'yarn'
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20'
+          cache: 'yarn'
 
       - name: Copy env file
         run: cp .env.local
@@ -44,18 +40,14 @@ jobs:
 
     if: contains(github.ref, 'master')
 
-    strategy:
-      matrix:
-        node-version: '20'
-        cache: 'yarn'
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20'
+          cache: 'yarn'
 
       - name: Copy env file
         run: cp .env.production
