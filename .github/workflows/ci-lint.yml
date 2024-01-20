@@ -35,7 +35,9 @@ jobs:
 
       - name: Run Container
         shell: sh
-        run: $DC exec -T yarn install
+        run: |
+          $DC exec -T npm install -g yarn
+#                    $DC exec -T npm install -g yarn
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
