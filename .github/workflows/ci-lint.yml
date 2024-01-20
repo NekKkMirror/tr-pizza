@@ -35,9 +35,9 @@ jobs:
           options: -v ${{ github.workspace }}:/var/www
           run: |
             $DC up --build -d
-            docker run pizza-app-local
-            npm install
-            npm run production
+            docker run pizza-app-local sh
+            yarn install
+            yarn lint
 
       - name: Build
         shell: sh
