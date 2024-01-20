@@ -4,19 +4,13 @@ run-name: Lint 🚀
 
 on: [pull_request]
 
-env:
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-
 jobs:
   lint-development:
     runs-on: ubuntu-latest
 
-#    if:  github.ref_name == 'development'
+    if: github.event.pull_request.base.ref == 'development'
 
     steps:
-      - name: shit
-        run: echo $BRANCH_NAME
-
       - uses: actions/checkout@v4
 
       - name: Use Node.js with yarn
