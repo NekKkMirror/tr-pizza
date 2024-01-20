@@ -19,6 +19,9 @@ jobs:
           node-version: '20'
           cache: 'yarn'
 
+      - name: Create env file
+        run: touch .env
+
       - name: Copy env file
         run: cp .env.local
 
