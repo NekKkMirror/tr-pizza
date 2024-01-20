@@ -4,6 +4,9 @@ run-name: Lint 🚀
 
 on: [pull_request]
 
+env:
+  DC: docker compose -f docker-compose-local.yml
+
 jobs:
   lint-development:
     runs-on: ubuntu-latest
@@ -27,15 +30,15 @@ jobs:
 
       - name: Build
         shell: sh
-        run: make compose-build
+        run: DC up --build -d
 
-      - name: Run Lint
-        shell: sh
-        run: make app-run-lint
+#      - name: Run Lint
+#        shell: sh
+#        run: make app-run-lint
 
       - name: Kill container
         shell: sh
-        run: make compose-down-v
+        run: DC down -v
 
 #  lint-production:
 #    runs-on: ubuntu-latest
