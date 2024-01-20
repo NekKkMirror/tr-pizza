@@ -14,7 +14,7 @@ export function App(): ReactElement {
         />
 
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> and save to reload qweqweqweqwe.
         </p>
 
         <a

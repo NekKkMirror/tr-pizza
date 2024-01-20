@@ -14,6 +14,7 @@ RUN_YARN_INSTALL = "yarn install"
 RUN_DEV = "yarn start --no-open"
 RUN_PROD = 'yarn build'
 RUN_LINT = 'yarn lint'
+
 # Exec containers
 .PHONY: app
 
@@ -21,6 +22,7 @@ app:
 	$(DOCKER_EXEC_TOOLS_APP)
 
 # Helpers
+
 .PHONY: fix-dir-permission
 
 fix-dir-permission:
@@ -28,6 +30,7 @@ fix-dir-permission:
 
 
 # Commands
+
 .PHONY:
 	cmd = "build-container"
 	cmd+= "install-deps"
@@ -38,10 +41,8 @@ fix-dir-permission:
 	cmd+= "compose-down app-restart"
 	cmd+= "compose-stop"
 	cmd+= "compose-down-v"
-	cmd+= "app-run-prod"
-	cmd+= "app-start-prod"
-	cmd+= "compose-build-run-prod"
 	cmd+= "docker-run-install-lint"
+	cmd+= "docker-run-install-build"
 	$${cmd}
 
 # LOCAL
@@ -76,15 +77,6 @@ compose-stop:
 compose-down-v: compose-stop
 	$(DOCKER_COMPOSE) down -v --remove-orphans || true
 
-# PROD
-
-app-run-prod:
-		$(DOCKER_EXEC_TOOLS_APP) -c $(RUN_PROD)
-
-app-start-prod: compose-up app-run-prod
-
-compose-build-run-prod: compose-build app-start-prod
-
 # CI
 
 docker-run-install-lint:
@@ -92,3 +84,7 @@ docker-run-install-lint:
 	yarn install
 	yarn lint
 
+docker-run-install-build:
+	$(DOCKER_RUN)
+	yarn install
+	yarn build
