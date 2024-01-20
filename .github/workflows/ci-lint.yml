@@ -28,13 +28,24 @@ jobs:
       - name: Copy env file
         run: cp .env.local .env
 
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: aschmelyun/cleaver:latest
+          options: -v ${{ github.workspace }}:/var/www
+          run: |
+            $DC up --build -d
+            docker run pizza-app-local
+            npm install
+            npm run production
+
       - name: Build
         shell: sh
         run: $DC up --build -d
-
-      - name: Run Container
-        shell: sh
-        run: $DC exec -T ls -la
+#
+#      - name: Run Container
+#        shell: sh
+#        run: $DC exec -T ls -la
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
