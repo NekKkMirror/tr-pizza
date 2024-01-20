@@ -5,7 +5,7 @@ CURRENT_DIR = $(patsubst %/,%,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 ROOT_DIR = $(CURRENT_DIR)
 
 DOCKER_COMPOSE ?= docker compose -f $(DOCKER_COMPOSE_FILE)
-DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE) run --rm
+DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE) run $(DOCKER_NODE_NAME) sh
 CURRENT_USER = sudo
 DOCKER_CONTAINER_NAME = ${DOCKER_NODE_NAME}
 DOCKER_EXEC_TOOLS_APP = $(CURRENT_USER) docker exec -it $(DOCKER_CONTAINER_NAME) sh
@@ -41,7 +41,7 @@ fix-dir-permission:
 	cmd+= "app-run-prod"
 	cmd+= "app-start-prod"
 	cmd+= "compose-build-run-prod"
-	cmd+= "app-run-lint"
+	cmd+= "docker-run-install-lint"
 	$${cmd}
 
 # LOCAL
@@ -87,5 +87,11 @@ compose-build-run-prod: compose-build app-start-prod
 
 # CI
 
-app-run-lint:
-	$(DOCKER_EXEC_TOOLS_APP) -c $(RUN_LINT)
+docker-run-install-lint:
+	$(DOCKER_RUN)
+	echo "Install deps"
+	yarn install
+	echo "Run lint"
+	yarn lint
+	echo "Lint end"
+

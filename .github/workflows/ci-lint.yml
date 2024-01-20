@@ -30,21 +30,15 @@ jobs:
 
       - name: Build
         shell: sh
-        run: $DC up --build -d
+        run: make build-container
 #
       - name: Run lint in container
         shell: sh
-        run: |
-          $DC run pizza-app-local sh
-          echo "Install deps"
-          yarn install
-          echo "Run lint"
-          yarn lint
-          echo "Lint end"
+        run: make docker-run-install-lint
 
       - name: Kill container
         shell: sh
-        run: $DC down -v
+        run: make compose-down-v
 
 #  lint-production:
 #    runs-on: ubuntu-latest
