@@ -1,14 +1,14 @@
-name: Lint CI
+name: CI WorkFlows Actions
 
-run-name: Lint 🚀
+run-name: CI/CD 🚀
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   lint-development:
     runs-on: ubuntu-latest
 
-    if: github.event.pull_request.base.ref == 'development'
+    if: github.event.pull_request.base.ref == 'development' && github.event_name == 'pull_request'
 
     steps:
       - uses: actions/checkout@v4
@@ -37,11 +37,38 @@ jobs:
         shell: sh
         run: make compose-down-v
 
+  deploy-development:
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.base.ref == 'development' github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js with yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Create env file
+        run: touch .env
+
+      - name: Copy env file
+        run: cp .env.local .env
+
+      - name: Build
+        shell: sh
+        run: make build-container
+
+      - name: Kill container
+        shell: sh
+        run: make compose-down-v
+
   lint-production:
     runs-on: ubuntu-latest
 
-    if: github.event.pull_request.base.ref == 'production'
-
+    if: github.event.pull_request.base.ref == 'production' && github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
 
