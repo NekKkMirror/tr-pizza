@@ -29,7 +29,7 @@ jobs:
         run: cp .env.local .env
 
       - name: Build
-        shell: powershell
+        shell: pwsh
         run: make compose-build
 
 #      - name: Run Lint
@@ -37,7 +37,7 @@ jobs:
 #        run: make app-run-lint
 
       - name: Kill container
-        shell: powershell
+        shell: pwsh
         run: make compose-down-v
 
 #  lint-production:
