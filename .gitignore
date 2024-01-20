@@ -1,5 +1,5 @@
 # compiled output
-/dist
+/docs
 /tmp
 /out-tsc
 
@@ -51,9 +51,6 @@ jspm_packages/
 
 # testing
 /coverage
-
-# production
-/dist
 
 # misc
 .DS_Store
