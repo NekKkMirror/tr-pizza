@@ -28,22 +28,13 @@ jobs:
       - name: Copy env file
         run: cp .env.local .env
 
-      - name: Run the build process with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          run: |
-            $DC up --build -d
-            docker run pizza-app-local
-            yarn install
-            yarn lint
-
       - name: Build
         shell: sh
         run: $DC up --build -d
 #
-#      - name: Run Container
-#        shell: sh
-#        run: $DC exec -T ls -la
+      - name: Run Container
+        shell: sh
+        run: $DC run pizza-app-local sh
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
