@@ -17,12 +17,12 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
-    "no-console": "warn",
-    "react/prop-types": "off",
-    "react/self-closing-comp": "warn",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/explicit-function-return-type": "off",
+//    "no-console": "warn",
+//    "react/prop-types": "off",
+//    "react/self-closing-comp": "warn",
+//    "react/react-in-jsx-scope": "off",
+//    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+//    "@typescript-eslint/explicit-function-return-type": "off",
     "padding-line-between-statements": [
       "error",
       {

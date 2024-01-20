@@ -2,7 +2,7 @@ import logo from './logo.svg'
 import { ReactElement } from 'react'
 
 export function App(): ReactElement {
-  return (
+  return `(
     <div className='App'>
       <header className='App-header'>
         <img
@@ -27,5 +27,5 @@ export function App(): ReactElement {
         </a>
       </header>
     </div>
-  )
+  )`
 }
