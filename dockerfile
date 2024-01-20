@@ -10,7 +10,6 @@ WORKDIR /home/app
 COPY package.json .
 COPY ./.yarn/sdks ./.yarn/sdks
 COPY ./.yarn/releases ./.yarn/releases/
-COPY ./.yarn/unplugged ./.yarn/unplugged/
 COPY ./.yarnrc.yml .
 
 #--------------------------------------
@@ -33,7 +32,6 @@ FROM runner AS app
 
 WORKDIR /home/app
 
-COPY --from=builder /home/app/.yarn/unplugged .yarn/unplugged/
 COPY --from=builder /home/app/.yarn/sdks .yarn/sdks/
 COPY --from=builder /home/app/.yarnrc.yml .
 COPY --from=builder /home/app/.yarn/releases .yarn/releases/
