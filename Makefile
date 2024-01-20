@@ -89,9 +89,6 @@ compose-build-run-prod: compose-build app-start-prod
 
 docker-run-install-lint:
 	$(DOCKER_RUN)
-	echo "Install deps"
 	yarn install
-	echo "Run lint"
 	yarn lint
-	echo "Lint end"
 
