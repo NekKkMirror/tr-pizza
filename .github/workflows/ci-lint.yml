@@ -29,16 +29,16 @@ jobs:
         run: cp .env.local .env
 
       - name: Build
-        shell: sh
-        run: $DC up --build -d
+        shell: powershell
+        run: make compose-build
 
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
 
       - name: Kill container
-        shell: sh
-        run: $DC down -v
+        shell: powershell
+        run: make compose-down-v
 
 #  lint-production:
 #    runs-on: ubuntu-latest
