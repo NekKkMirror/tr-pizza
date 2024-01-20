@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         shell: sh
-        run: DC up --build -d
+        run: $DC up --build -d
 
 #      - name: Run Lint
 #        shell: sh
@@ -38,7 +38,7 @@ jobs:
 
       - name: Kill container
         shell: sh
-        run: DC down -v
+        run: $DC down -v
 
 #  lint-production:
 #    runs-on: ubuntu-latest
