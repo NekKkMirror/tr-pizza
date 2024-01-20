@@ -23,7 +23,9 @@ jobs:
           cache: 'yarn'
 
       - name: shit
+        shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
 
       - name: Create env file
         run: touch .env
