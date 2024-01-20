@@ -34,7 +34,7 @@ jobs:
 #
       - name: Run Container
         shell: sh
-        run: $DC run pizza-app-local sh
+        run: $DC run pizza-app-local sh | yarn v
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
