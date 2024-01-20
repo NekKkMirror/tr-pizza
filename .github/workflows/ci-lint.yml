@@ -5,7 +5,7 @@ run-name: Lint 🚀
 on: [pull_request]
 
 env:
-  DC: docker compose -f docker-compose.local.yml
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   lint-development:
@@ -14,6 +14,9 @@ jobs:
 #    if:  github.ref_name == 'development'
 
     steps:
+      - name: shit
+        run: echo ${{BRANCH_NAME}}
+
       - uses: actions/checkout@v4
 
       - name: Use Node.js with yarn
