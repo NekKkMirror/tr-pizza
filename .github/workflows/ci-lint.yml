@@ -11,7 +11,7 @@ jobs:
   lint-development:
     runs-on: ubuntu-latest
 
-    if:  github.ref == 'refs/heads/development'
+    if:  github.ref_name == 'development'
 
     steps:
       - uses: actions/checkout@v4
