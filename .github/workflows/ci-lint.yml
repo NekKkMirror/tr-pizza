@@ -11,12 +11,12 @@ jobs:
   lint-development:
     runs-on: ubuntu-latest
 
-  # if: contains(github.ref, 'development')
+    if: contains(github.ref, 'development')
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Use Node.js with yarn
         uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -31,7 +31,7 @@ jobs:
       - name: Build
         shell: sh
         run: make build-container
-#
+
       - name: Run lint in container
         shell: sh
         run: make docker-run-install-lint
@@ -39,28 +39,3 @@ jobs:
       - name: Kill container
         shell: sh
         run: make compose-down-v
-
-#  lint-production:
-#    runs-on: ubuntu-latest
-#
-#    if: contains(github.ref, 'master')
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Use Node.js
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: '20'
-#          cache: 'yarn'
-#
-#      - name: Copy env file
-#        run: cp .env.production .env
-#
-#      - name: Build
-#        run: make compose-build
-#
-#      - name: Run Lint
-#        run: make app-run-lint
-#
-#      - name: Kill container
-#        run: make compose-down-v
