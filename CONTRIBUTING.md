@@ -19,7 +19,7 @@
       cp .env.local .env
   
       # or link with
-      ln -s ..env.local .env
+      ln -s .env.local .env
   ```
   
 - #### Build container 

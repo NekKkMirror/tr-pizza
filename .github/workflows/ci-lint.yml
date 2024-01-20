@@ -23,7 +23,7 @@ jobs:
         run: touch .env
 
       - name: Copy env file
-        run: cp .env.local
+        run: cp .env.local .env
 
       - name: Build
         run: make compose-build
@@ -48,7 +48,7 @@ jobs:
 #          cache: 'yarn'
 #
 #      - name: Copy env file
-#        run: cp .env.production
+#        run: cp .env.production .env
 #
 #      - name: Build
 #        run: make compose-build
