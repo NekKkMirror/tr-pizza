@@ -40,7 +40,7 @@ jobs:
   deploy-development:
     runs-on: ubuntu-latest
 
-    if: github.event.pull_request.base.ref == 'development' github.event_name == 'push'
+    if: github.event.pull_request.base.ref == 'development' && github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@v4
