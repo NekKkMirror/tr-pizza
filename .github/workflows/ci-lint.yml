@@ -4,9 +4,9 @@ run-name: Development Lint
 
 on:
   pull_request:
-    branches:
-      - development
-      - master
+    types: [assigned, opened, synchronize, reopened]
+  pull_request_review:
+    types: [edited, dismissed]
 
 jobs:
   lint-development:
