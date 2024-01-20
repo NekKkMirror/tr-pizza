@@ -33,7 +33,7 @@ jobs:
         with:
           run: |
             $DC up --build -d
-            docker run pizza-app-local sh
+            docker run pizza-app-local
             yarn install
             yarn lint
 
