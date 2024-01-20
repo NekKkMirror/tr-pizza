@@ -32,12 +32,12 @@ jobs:
         shell: sh
         run: $DC up --build -d
 #
-      - name: Run Container
+      - name: Run lint in container
         shell: sh
-        run: $DC run pizza-app-local sh | yarn v
-#      - name: Run Lint
-#        shell: sh
-#        run: make app-run-lint
+        run: |
+          $DC run pizza-app-local sh
+          yarn install
+          yarn lint
 
       - name: Kill container
         shell: sh
