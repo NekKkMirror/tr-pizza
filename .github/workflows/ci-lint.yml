@@ -32,12 +32,9 @@ jobs:
         shell: sh
         run: $DC up --build -d
 
-
       - name: Run Container
         shell: sh
-        run: |
-          $DC exec -T npm install -g yarn
-#                    $DC exec -T npm install -g yarn
+        run: $DC exec -T ls -la
 #      - name: Run Lint
 #        shell: sh
 #        run: make app-run-lint
