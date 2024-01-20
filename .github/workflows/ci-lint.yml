@@ -5,20 +5,20 @@ run-name: Lint
 on:
   pull_request:
     branches:
-      - master
       - development
+      - master
 
 jobs:
   lint-development:
     runs-on: ubuntu-latest
 
-#    if: github.ref == 'refs/heads/development'
+    if: contains(github.ref, 'development')
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'yarn'
@@ -32,19 +32,18 @@ jobs:
       - name: Run Lint
         run: make app-run-lint
 
-      - name: Run Lint
+      - name: Kill container
         run: make compose-down-v
 
   lint-production:
     runs-on: ubuntu-latest
 
     if: contains(github.ref, 'master')
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'yarn'
@@ -58,5 +57,5 @@ jobs:
       - name: Run Lint
         run: make app-run-lint
 
-      - name: Run Lint
+      - name: Kill container
         run: make compose-down-v
