@@ -31,8 +31,6 @@ jobs:
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
-          image: aschmelyun/cleaver:latest
-          options: -v ${{ github.workspace }}:/var/www
           run: |
             $DC up --build -d
             docker run pizza-app-local sh
