@@ -2,5 +2,4 @@ node_modules/*
 *.sql
 *.gz
 *.txt
-build
-dist
+docs
