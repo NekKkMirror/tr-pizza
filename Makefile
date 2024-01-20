@@ -4,9 +4,6 @@ include .env
 CURRENT_DIR = $(patsubst %/,%,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 ROOT_DIR = $(CURRENT_DIR)
 
-PROJECT_DIR = src
-
-DOCKER_COMPOSE_FILE = docker-compose.local.yml
 DOCKER_COMPOSE ?= docker compose -f $(DOCKER_COMPOSE_FILE)
 DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE) run --rm
 CURRENT_USER = sudo
@@ -15,7 +12,8 @@ DOCKER_EXEC_TOOLS_APP = $(CURRENT_USER) docker exec -it $(DOCKER_CONTAINER_NAME)
 
 RUN_YARN_INSTALL = "yarn install"
 RUN_DEV = "yarn start --no-open"
-
+RUN_PROD = 'yarn build'
+RUN_LINT = 'yarn lint'
 # Exec containers
 .PHONY: app
 
@@ -40,7 +38,13 @@ fix-dir-permission:
 	cmd+= "compose-down app-restart"
 	cmd+= "compose-stop"
 	cmd+= "compose-down-v"
+	cmd+= "app-run-prod"
+	cmd+= "app-start-prod"
+	cmd+= "compose-build-run-prod"
+	cmd+= "app-run-lint"
 	$${cmd}
+
+# LOCAL
 
 build-container:
 	$(DOCKER_COMPOSE) up --build --no-recreate -d
@@ -71,3 +75,17 @@ compose-stop:
 
 compose-down-v: compose-stop
 	$(DOCKER_COMPOSE) down -v --remove-orphans || true
+
+# PROD
+
+app-run-prod:
+		$(DOCKER_EXEC_TOOLS_APP) -c $(RUN_PROD)
+
+app-start-prod: compose-up app-run-prod
+
+compose-build-run-prod: compose-build app-start-prod
+
+# CI
+
+app-run-lint:
+	$(DOCKER_EXEC_TOOLS_APP) -c $(RUN_LINT)

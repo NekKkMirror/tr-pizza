@@ -1,0 +1,36 @@
+name: Development Lint CI
+
+run-name: Development Lint
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: current
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Copy env file
+        run: cp .env.local
+
+      - name: Build
+        run: make compose-build
+
+      - name: Run Lint
+        run: make app-run-lint
+
+      - name: Run Lint
+        run: make compose-down-v

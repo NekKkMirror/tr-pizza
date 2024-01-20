@@ -5,15 +5,23 @@ export function App(): ReactElement {
   return (
     <div className='App'>
       <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' width={300} height={300} />
+        <img
+          alt='logo'
+          className='App-logo'
+          height={300}
+          src={logo}
+          width={300}
+        />
+
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+
         <a
           className='App-link'
           href='https://reactjs.org'
-          target='_blank'
           rel='noopener noreferrer'
+          target='_blank'
         >
           Learn React
         </a>
