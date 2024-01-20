@@ -36,3 +36,35 @@ jobs:
       - name: Kill container
         shell: sh
         run: make compose-down-v
+
+  lint-production:
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.base.ref == 'production'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js with yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Create env file
+        run: touch .env
+
+      - name: Copy env file
+        run: cp .env.production .env
+
+      - name: Build
+        shell: sh
+        run: make build-container
+
+      - name: Run lint in container
+        shell: sh
+        run: make docker-run-install-lint
+
+      - name: Kill container
+        shell: sh
+        run: make compose-down-v
