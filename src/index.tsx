@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from './App'
-import { ClickToComponent } from 'click-to-react-component'
 
 const rootElement: HTMLElement | null = document.getElementById('root')
 
@@ -11,7 +10,6 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <App />
-      <ClickToComponent />
     </React.StrictMode>,
   )
 }

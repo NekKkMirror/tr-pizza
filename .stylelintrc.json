@@ -7,11 +7,5 @@
   "rules": {
     "declaration-colon-newline-after": "always-multi-line"
   },
-  "ignoreFiles": [
-    "build/**",
-    "coverage/**",
-    "dist/**",
-    "**/*.js",
-    "**/*.ts"
-  ]
+  "ignoreFiles": ["coverage/**", "**/*.js", "**/*.ts", "docs/**"]
 }
