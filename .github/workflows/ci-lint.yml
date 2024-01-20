@@ -5,7 +5,7 @@ run-name: Lint 🚀
 on: [pull_request]
 
 env:
-  DC: docker compose -f docker-compose-local.yml
+  DC: docker compose -f docker-compose.local.yml
 
 jobs:
   lint-development:
