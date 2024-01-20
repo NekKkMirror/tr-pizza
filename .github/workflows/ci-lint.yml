@@ -1,12 +1,9 @@
-name: Lint CI
+name: Development Lint CI
 
-run-name: Lint
+run-name: Development Lint
 
 on:
   pull_request:
-    branches:
-      - master
-      - development
     types: [assigned, opened, synchronize, reopened]
   pull_request_review:
     types: [edited, dismissed]
@@ -17,14 +14,17 @@ jobs:
 
     if: contains(github.ref, 'development')
 
-    steps:
-      - uses: actions/checkout@v4
+    strategy:
+      matrix:
+        node-version: ['20']
 
-      - name: Use Node.js
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-          cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
 
       - name: Copy env file
         run: cp .env.local
@@ -42,14 +42,18 @@ jobs:
     runs-on: ubuntu-latest
 
     if: contains(github.ref, 'master')
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Use Node.js
+    strategy:
+      matrix:
+        node-version: ['20']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-          cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
 
       - name: Copy env file
         run: cp .env.production
