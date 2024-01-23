@@ -1,0 +1,48 @@
+name: Release WorkFlows Actions
+
+run-name: Release 🚀
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+jobs:
+  release:
+    name: Create Release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use checkout v4
+        uses: actions/checkout@v4
+
+      - name: Use Node.js with yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Copy package.json
+        id: set_package_json
+        run: |
+          content=`cat package.json`
+
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+
+          echo "::set-output name=packageJson::$content"
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: v${{ fromJson(steps.set_package_json.outputs.packageJson).version }}
+        run: |
+          gh release create "$TAG" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag}" \
+              --generate-notes \
+              --latest
