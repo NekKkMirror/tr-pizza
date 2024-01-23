@@ -8,21 +8,35 @@ on:
       - master
       - development
     tags:
-      - v-*.*.*
-
-  pull_request:
-    branches:
-      - development
+      - v-*
 
 jobs:
   release:
-    name: 'Release'
+    name: Create Release
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        name: 'Action automatic releases'
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
+      - name: Copy package.json
+        id: set_package_json
+        run: |
+          ls -la
+          content=`cat package.json`
+
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+
+          echo "::set-output name=packageJson::$content"
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ fromJson(steps.set_package_json.outputs.packageJson).version }}
+        run: |
+          echo "$TAG"
+#        |
+#          gh release create "$tag" \
+#              --repo="$GITHUB_REPOSITORY" \
+#              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+#              --generate-notes

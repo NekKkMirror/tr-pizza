@@ -36,9 +36,8 @@ const getPackageJson = () => {
 const getErrorMessage = (message) => {
   const leftSide = '\x1b[31m*'
   const rideSide = '\x1b[0m'
-  const errorMessage = `${leftSide} ${message} ${rideSide} \n`
 
-  return errorMessage
+  return `${leftSide} ${message} ${rideSide} \n`
 }
 
 const getNewVersion = (currentVersion, buildType) => {
@@ -80,7 +79,6 @@ const updateVersionTag = (version) => {
 
   removeOldTags()
   addVersionTag(releaseVersion)
-  pushTagToGit(releaseVersion)
 }
 
 const removeOldTags = () => {
@@ -93,19 +91,12 @@ const removeOldTags = () => {
 const getOldTags = () => {
   const command = 'git tag --list'
   const { stdout } = shell.exec(command)
-  const oldTags = stdout.split('\n').filter((tag) => Boolean(tag))
 
-  return oldTags
+  return stdout.split('\n').filter((tag) => Boolean(tag))
 }
 
 const addVersionTag = (version) => {
   const command = `git tag ${version}`
-
-  shell.exec(command)
-}
-
-const pushTagToGit = (version) => {
-  const command = `git push origin ${version}`
 
   shell.exec(command)
 }
