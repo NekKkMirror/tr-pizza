@@ -63,7 +63,7 @@ compose-build-run-dev: compose-build app-run-dev
 compose-up:
 	$(DOCKER_COMPOSE) up -d
 
-app-start-dev: compose-up app-run-dev
+app-start-dev: compose-up install-deps app-run-dev
 
 compose-down:
 	$(DOCKER_COMPOSE) down

@@ -54,3 +54,9 @@ yarn-error.log*
 
 #scripts
 /scripts
+
+#config
+vite.config.ts
+
+# types
+/types
