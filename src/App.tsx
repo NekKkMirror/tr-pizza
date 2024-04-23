@@ -1,31 +1,59 @@
-import logo from './logo.svg'
-import { ReactElement } from 'react'
+import { HomePage } from '@/pages'
+import { MainLayout } from '@/layout/main.layout'
+import {
+  type FC,
+  lazy,
+  type LazyExoticComponent,
+  type ReactElement,
+  Suspense,
+} from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import './scss/app.scss'
+
+const CartPage: LazyExoticComponent<FC> = lazy(
+  () => import('./pages/Cart.page'),
+)
+const FullPizzaPage: LazyExoticComponent<FC> = lazy(
+  () => import('./pages/FullPizza.page'),
+)
+const NotFoundPage: LazyExoticComponent<FC> = lazy(
+  () => import('./pages/NotFound.page'),
+)
 
 export function App(): ReactElement {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img
-          alt='logo'
-          className='App-logo'
-          height={300}
-          src={logo}
-          width={300}
+    <Routes>
+      <Route element={<MainLayout />} path='/'>
+        <Route element={<HomePage />} path='' />
+
+        <Route
+          element={
+            <Suspense fallback={<div>Идёт загрузка корзины...</div>}>
+              <CartPage />
+            </Suspense>
+          }
+          path='cart'
         />
 
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route
+          element={
+            <Suspense fallback={<div>Идёт загрузка...</div>}>
+              <FullPizzaPage />
+            </Suspense>
+          }
+          path='pizza/:id'
+        />
+      </Route>
 
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Route
+        element={
+          <Suspense fallback={<div>Идёт загрузка...</div>}>
+            <NotFoundPage />
+          </Suspense>
+        }
+        path='*'
+      ></Route>
+    </Routes>
   )
 }
