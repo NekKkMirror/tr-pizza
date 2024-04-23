@@ -62,6 +62,7 @@ const RAW_RUNTIME_STATE =
           ["react-paginate", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:8.2.0"],\
           ["react-redux", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:9.1.0"],\
           ["react-router-dom", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:6.21.3"],\
+          ["redux", "npm:5.0.1"],\
           ["rollup-plugin-typescript2", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:0.36.0"],\
           ["sass", "npm:1.70.0"],\
           ["semver", "npm:7.5.4"],\
@@ -6435,6 +6436,7 @@ const RAW_RUNTIME_STATE =
           ["react-paginate", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:8.2.0"],\
           ["react-redux", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:9.1.0"],\
           ["react-router-dom", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:6.21.3"],\
+          ["redux", "npm:5.0.1"],\
           ["rollup-plugin-typescript2", "virtual:0777cafc1797f6a24822fb543a7693cc8372d43089885b48f4063075ed9c33c59614f3b07e1f4ebd27d62970ba6b64444df0685eb719916a45d4f6195a064d5c#npm:0.36.0"],\
           ["sass", "npm:1.70.0"],\
           ["semver", "npm:7.5.4"],\
@@ -6829,7 +6831,7 @@ const RAW_RUNTIME_STATE =
           ["@types/use-sync-external-store", "npm:0.0.3"],\
           ["react", "npm:18.2.0"],\
           ["react-native", null],\
-          ["redux", null],\
+          ["redux", "npm:5.0.1"],\
           ["use-sync-external-store", "virtual:d6c28c7027bfc3e2a584e070a421d09b043351b8733b50ac830c529849707c86412314afa24b75a2569b0ce03bf2d7ad32002796805d43639de2858f1165f8fd#npm:1.2.0"]\
         ],\
         "packagePeers": [\
