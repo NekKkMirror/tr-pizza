@@ -2,6 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/*": ["src/*"],
+      "@IMG/*": ["src/assets/img/*"],
+      "@UTS": ["src/utils"],
+      "@CNF": ["config"],
       "@RX": ["src/redux"],
       "@RX-filter": ["types/@RX/filter"],
       "@RX-cart": ["types/@RX/cart"],
@@ -12,8 +16,6 @@
       "@CMP-sort": ["types/@CMP/sort"],
       "@CMP-cart": ["types/@CMP/cart"],
       "@CMP": ["src/components"],
-      "@UTS": ["src/utils"],
-      "@CNF": ["config"],
     },
     "declaration": true,
     "declarationDir": "types",
