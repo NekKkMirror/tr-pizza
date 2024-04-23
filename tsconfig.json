@@ -1,5 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@RX": ["src/redux"],
+      "@RX-filter": ["types/@RX/filter"],
+      "@RX-cart": ["types/@RX/cart"],
+      "@RX-pizza": ["types/@RX/pizza"],
+      "@CMP-categories": ["types/@CMP/categories"],
+      "@CMP-pagination": ["types/@CMP/pagination"],
+      "@CMP-pizza-block": ["types/@CMP/pizzaBlock"],
+      "@CMP-sort": ["types/@CMP/sort"],
+      "@CMP-cart": ["types/@CMP/cart"],
+      "@CMP": ["src/components"],
+      "@UTS": ["src/utils"],
+      "@CNF": ["config"],
+    },
+    "declaration": true,
+    "declarationDir": "types",
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["vite/client"],
