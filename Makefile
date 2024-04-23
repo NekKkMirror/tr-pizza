@@ -6,9 +6,9 @@ ROOT_DIR = $(CURRENT_DIR)
 
 DOCKER_COMPOSE ?= docker compose -f $(DOCKER_COMPOSE_FILE)
 DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE) run $(DOCKER_NODE_NAME) sh
-CURRENT_USER = sudo
+#CURRENT_USER = sudo
 DOCKER_CONTAINER_NAME = ${DOCKER_NODE_NAME}
-DOCKER_EXEC_TOOLS_APP = $(CURRENT_USER) docker exec -it $(DOCKER_CONTAINER_NAME) sh
+DOCKER_EXEC_TOOLS_APP = docker exec -it $(DOCKER_CONTAINER_NAME) sh
 
 RUN_YARN_INSTALL = "yarn install"
 RUN_DEV = "yarn start --no-open"
@@ -63,7 +63,7 @@ compose-build-run-dev: compose-build app-run-dev
 compose-up:
 	$(DOCKER_COMPOSE) up -d
 
-app-start-dev: compose-up app-run-dev
+app-start-dev: compose-up install-deps app-run-dev
 
 compose-down:
 	$(DOCKER_COMPOSE) down
