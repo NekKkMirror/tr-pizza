@@ -17,8 +17,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/src'),
-      '@IMG': path.resolve(__dirname, '/src/assets/img'),
+      '@/*': path.resolve(__dirname, '/src/*'),
+      '@IMG/*': path.resolve(__dirname, '/src/assets/img/*'),
       '@RX-cart': path.resolve(__dirname, '/types/@RX/cart/index.d.ts'),
       '@RX-filter': path.resolve(__dirname, '/types/@RX/filter/index.d.ts'),
       '@RX-pizza': path.resolve(__dirname, '/types/@RX/pizza/index.d.ts'),
